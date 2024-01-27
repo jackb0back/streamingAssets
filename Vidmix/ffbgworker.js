@@ -276,7 +276,7 @@ var FFmpegModuleCreate = (() => {
 				if (!wasmBinary && (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER)) {
 					if (typeof fetch == "function" && !isFileURI(binaryFile)) {
 						return fetch(binaryFile, {
-							credentials: "same-origin"
+							//credentials: "same-origin"
 						}).then(response => {
 							if (!response["ok"]) {
 								throw "failed to load wasm binary file at '" + binaryFile + "'"
@@ -308,7 +308,7 @@ var FFmpegModuleCreate = (() => {
 			function instantiateAsync(binary, binaryFile, imports, callback) {
 				if (!binary && typeof WebAssembly.instantiateStreaming == "function" && !isDataURI(binaryFile) && !isFileURI(binaryFile) && !ENVIRONMENT_IS_NODE && typeof fetch == "function") {
 					return fetch(binaryFile, {
-						credentials: "same-origin"
+						//credentials: "same-origin"
 					}).then(response => {
 						var result = WebAssembly.instantiateStreaming(response, imports);
 						return result.then(callback, function(reason) {
@@ -5139,7 +5139,7 @@ var FFmpegModuleCreate = (() => {
               return filename.startsWith("file://")
           }
           var wasmBinaryFile;
-          wasmBinaryFile = "ffmpeg-simd-nosab-1699985172.wasm";
+          wasmBinaryFile = "https://cdn.jsdelivr.net/gh/jackb0back/streamingAssets@main/Vidmix/ffmpeg-simd-nosab-1699985172.wasm";
           if (!isDataURI(wasmBinaryFile)) {
               wasmBinaryFile = locateFile(wasmBinaryFile)
           }
@@ -5161,7 +5161,7 @@ var FFmpegModuleCreate = (() => {
           function getBinaryPromise(binaryFile) {
               if (!wasmBinary && (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER)) {
                   if (typeof fetch == "function" && !isFileURI(binaryFile)) {
-                      return fetch(binaryFile, {
+                      return fetch("https://cdn.jsdelivr.net/gh/jackb0back/streamingAssets@main/Vidmix/"+ binaryFile, {
                           credentials: "same-origin"
                       }).then(response => {
                           if (!response["ok"]) {
