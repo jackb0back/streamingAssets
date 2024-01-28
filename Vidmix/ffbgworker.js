@@ -9782,9 +9782,9 @@ addEventListener('message', async ({ data }) => {
     } else if (data.cmd == 'init') {
 		try {
 			if (WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,5,1,96,0,1,123,3,2,1,0,10,10,1,8,0,65,0,253,15,253,98,11]))) {
-				self.importScripts('ffmpeg-simd-nosab-1699985172.js');
+				self.importScripts('https://cdn.jsdelivr.net/gh/jackb0back/streamingAssets@main/Vidmix/ffmpeg-simd-nosab-1699985172.js');
 			} else {
-				self.importScripts('ffmpeg-nosab-1699985172.js');	    
+				self.importScripts('https://cdn.jsdelivr.net/gh/jackb0back/streamingAssets@main/Vidmix/ffmpeg-nosab-1699985172.js');	    
 			}
 		} catch (e) {
 			console.log("Failed to load ffmpeg (js)");

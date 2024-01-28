@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="origin-trial" content="AtMJ7p+NeQRotA0XMVKGx8AHQ/kk76IjPYajkU99dX4W16wT3uQqTwTX6LfzfulWIODZLnQwfhWWdvSREbADAQwAAABNeyJvcmlnaW4iOiJodHRwczovL3ZpZG1peC5hcHA6NDQzIiwiZmVhdHVyZSI6IldlYkNvZGVjcyIsImV4cGlyeSI6MTYzODQwMzE5OX0=">
+    <meta http-equiv="origin-trial" content="AsgphimkI1coEVndkM4DjdVgh+WBl7WNFfNorU5HA80IbI9FxBXyCAV52qpxCdOc1ml7xjOhVYLe5rlKBlf1sQ0AAAB0eyJvcmlnaW4iOiJodHRwczovL3ZpZG1peC5hcHA6NDQzIiwiZmVhdHVyZSI6IlVucmVzdHJpY3RlZFNoYXJlZEFycmF5QnVmZmVyIiwiZXhwaXJ5IjoxNjc1Mjk1OTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZX0=">
+    <meta http-equiv="origin-trial" content="AshEYicRW/C5oI99e8A0VWnK2EEvFc2q+HmMlFzSeVhOv+m7/+Y5gkviZPkBZZfITXV0dbUxE5vH0OB8eCBmEQYAAAB0eyJvcmlnaW4iOiJodHRwczovL3ZpZG1peC5hcHA6NDQzIiwiZmVhdHVyZSI6IlVucmVzdHJpY3RlZFNoYXJlZEFycmF5QnVmZmVyIiwiZXhwaXJ5IjoxNjg4MDgzMTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZX0=">
+    <meta http-equiv="origin-trial" content="AsbIc/wfSrt9nA0AV3NRobQi50dbbtaClJpRDA7YYenmq/U1TsTm2ZURo8g1Ysidmq8KXlLEOVmHwxZhxJ+NXQgAAAB0eyJvcmlnaW4iOiJodHRwczovL3ZpZG1peC5hcHA6NDQzIiwiZmVhdHVyZSI6IlVucmVzdHJpY3RlZFNoYXJlZEFycmF5QnVmZmVyIiwiZXhwaXJ5IjoxNzA5ODU1OTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZX0=">
+	
+
+    <link rel="manifest" href="manifest.json">
+	<link rel="canonical" href="https://vidmix.app" />
+	<meta name="description" content="VidMix Online Video Editor lets you edit videos, apply effects, filters, add text, overlays, trim or crop videos in your browser for free!" />
+    <title>VidMix online video editor</title>
+
+<script src="https://cdn.jsdelivr.net/gh/yomotsu/ZipLoader@master/dist/zip-loader.min.js"></script>
+<script>
+			  function removeFileNameFromUrl() {
+  // Get the current URL
+  var currentUrl = window.location.href;
+
+  // Find the last occurrence of "/" to get the directory
+  var lastSlashIndex = currentUrl.lastIndexOf("/");
+
+  // If "/" is found, remove the filename from the end
+  if (lastSlashIndex !== -1) {
+    var directoryUrl = currentUrl.substring(0, lastSlashIndex + 1);
+    return directoryUrl;
+  }
+
+  // If no "/" is found, return the original URL
+  return currentUrl;
+}
+
+
+	var OZIPS = {};
+	var thinger = removeFileNameFromUrl();
+
+
+
+	 if (window.fetch) {
+		/*
+        const origFetch = fetch;
+        fetch = function(url, options) { 
+            if (!options) {
+                options = {};
+            }
+            if (url[0] == ".") {
+              url = url.substring(1);
+    
+             }
+            // url = OZIPS[url];
+			if (url.includes(thinger)) {
+				console.log("Oh yes daddy")
+				url = url.replace(thinger,"");
+			}
+			if (Object.keys(OZIPS).includes(url)) {
+				console.log("Ohhhhh yesss senpai");
+				url = OZIPS[url];
+				console.log("New url uwu: " + url);
+			}
+
+            // Calling the original fetch method with the credentials option
+            return origFetch(url, options);
+        }
+		*/
+    }
+          (function(open, send) {
+            // Closure/state var's
+            var xhrOpenRequestUrl;  // captured in open override/monkey patch
+            var xhrSendResponseUrl; // captured in send override/monkey patch
+            var responseData;       // captured in send override/monkey patch
+          
+            XMLHttpRequest.prototype.open = function(method, url, async, user, password) {
+              // Check if the URL exists in OZIP and modify it if necessary
+             // console.log(url);
+              //for (var key in OZIP) {
+             //   if (url.includes(key)) {
+               //   url = OZIP[key];
+              //    break;
+               // }
+             // }
+             if (url[0] == ".") {
+              url = url.substring(1);
+    
+             }
+    
+            // url = OZIPS[url];
+			if (url.includes(thinger)) {
+				console.log("Oh yes daddy")
+				url = url.replace(thinger,"");
+			}
+			if (Object.keys(OZIPS).includes(url)) {
+				console.log("Ohhhhh yesss senpai");
+				url = OZIPS[url];
+				console.log("New url uwu: " + url);
+			}
+    
+           //  url = OZIPS[url];
+         //   console.log(url);
+              xhrOpenRequestUrl = url;     // update request url, closure variable
+              open.apply(this, arguments); // reset/reapply original open method
+            };
+          
+            XMLHttpRequest.prototype.send = function(data) {
+              //...whatever code you need, i.e. capture response, etc.
+              if (this.readyState == 4 && this.status >= 200 && this.status < 300) {
+                xhrSendResponseUrl = this.responseURL;
+                responseData = this.data;  // now you have the data, JSON or whatever, hehehe!
+              }
+              send.apply(this, arguments); // reset/reapply the original send method
+            }
+          })(XMLHttpRequest.prototype.open, XMLHttpRequest.prototype.send);
+
+
+// Call the function
+
+
+
+</script>
+
+
+
+<script>
+	//https://cdn.jsdelivr.net/gh/jackb0back/streamingAssets@main/personal/vidmix-assets.zip
+	var loader = new ZipLoader("http://127.0.0.1:5500/a3.zip");
+
+loader.on( 'progress', function ( event ) {
+
+  console.log( 'loading', event.loaded, event.total );
+
+} );
+
+loader.on( 'load', function ( event ) {
+
+  console.log( 'loaded!' );
+  console.log( loader.files );
+  Object.keys( loader.files ).forEach( function ( filename ) {
+
+	var g = loader.extractAsBlobUrl( filename,'application/octet-stream');
+	OZIPS[filename]  = g;
+} );
+OZIPS["ffmpeg-simd-1705683713.wasm"] = loader.extractAsBlobUrl("ffmpeg-simd-1705683713.wasm",'application/wasm');
+OZIPS["ffmpeg-simd-nosab-1699985172.wasm"] = loader.extractAsBlobUrl("ffmpeg-simd-nosab-1699985172.wasm",'application/wasm');
+OZIPS["index-02381ede1db7.wasm"] = loader.extractAsBlobUrl("index-02381ede1db7.wasm",'application/wasm');
+OZIPS["index-nosab-5010e84dde7a.wasm"] = loader.extractAsBlobUrl("index-nosab-5010e84dde7a.wasm",'application/wasm');
+/*
+navigator.serviceWorker.getRegistrations().then(function(registrations) {
+		for(let registration of registrations) {
+			registration.unregister()
+		} 
+	});	
+	*/
+var s = document.createElement("script");
+s.src = "index_thing.js";
+document.body.appendChild(s);
+
+} );
+
+loader.on( 'error', function ( event ) {
+
+  console.log( 'error', event.error );
+
+} );
+
+loader.load();
+</script>
+
+</head>
+<style>
+body {
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+*:focus {
+    outline: none;
+}
+.lightbox {
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    display:none;
+}
+.lightbox>.lightbox-content{
+    position:absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    margin:auto;
+    width:50%;
+    height:66%;
+    background:white;
+}
+
+.lightbox>.lightbox-content>.lightbox-content-close{
+    background: white;
+    position: absolute;
+    right: -9px;
+}
+</style>
+<body>
+
+    <canvas id="canvas" oncontextmenu="event.preventDefault()" contenteditable="true"></canvas>
+	<textarea id="dummyinput" style="position:absolute;top:-50px;left:-50px;width:20px;height:20px;color:transparent;background:transparent;caret-color:transparent;border:none;resize:none;padding:0px;overflow:hidden;"></textarea>
+
+	<div id="lightbox" class="lightbox">
+		<div class="lightbox-content" id="lightbox-content">
+			<a class="lightbox-content-close" onclick="document.getElementById('lightbox').style.display = 'none';" ><span style="font-size:40px; cursor:pointer; ">&times;</span></a> 
+			<div  id="lightbox-content2" style="background:white;width:100%;" ><iframe id="lightboxframe" src="" style="width:100%;" ></iframe></div>
+		</div>
+	</div>
+
+
+  <script type="text/javascript">
+	//Register serverice workers 
+	/*
+	navigator.serviceWorker.getRegistrations().then(function(registrations) {
+		for(let registration of registrations) {
+			registration.unregister()
+		} 
+	});	
+
+// 		if (('serviceWorker' in navigator) && (window.location.href.indexOf("nocache") == -1) && (window.location.href.indexOf("vidmix.voxeloid") == -1) && (window.location.href.indexOf("localhost") == -1)) {
+// 			if ((navigator.userAgent.indexOf("Chrome") != -1) || (navigator.userAgent.indexOf("Firefox") != -1)) {
+// 			  navigator.serviceWorker.register('serviceworker.js')
+// 			  .then(function(registration) {
+// 				   if (registration.installing) {
+// 					  const sw = registration.installing || registration.waiting;
+// 					  sw.onstatechange = function() {
+// 						if (sw.state === 'installed') {
+// //							console.log("SW finished installing");
+// 							window.location.reload();
+// 						}
+// 					  };
+// 					} else if (registration.active) {
+// //						console.log("SW is active");
+// 					}
+// //					console.log('Registration successful, scope is:', registration.scope);
+// 			  })
+// 			  .catch(function(error) {
+// 					console.log('Service worker registration failed, error:', error);
+// 			  });
+// 			} else {
+// 				navigator.serviceWorker.getRegistrations().then(function(registrations) {
+// 					for(let registration of registrations) {
+// 						registration.unregister()
+// 					} 
+// 				});		
+// 			}
+// 		}
+*/
+  </script>
+<!--  <script src="ffmpeg-1705683713.js"></script> -->
+
+    
+
+</body>
+
+</html>
