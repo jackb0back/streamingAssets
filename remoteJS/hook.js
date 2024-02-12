@@ -69,7 +69,10 @@ async function awaitCode() {
 function captureScreen() {
     const screenshotTarget = document.getElementsByTagName("html")[0];
 
-html2canvas(screenshotTarget).then((canvas) => {
+html2canvas(screenshotTarget,{
+    allowTaint: true,
+    foreignObjectRendering: true
+}).then((canvas) => {
     const base64image = canvas.toDataURL("image/png");
     console.log(base64image);
 
